@@ -1,0 +1,17 @@
+<!-- login.html -->
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <form action="../backend/logic/login.php" method="POST">
+    <input type="text" name="login" placeholder="Benutzername oder Email" required>
+    <input type="password" name="passwort" placeholder="Passwort" required>
+    <label><input type="checkbox" name="remember"> Eingeloggt bleiben</label>
+    <button type="submit">Login</button>
+  </form>
+</body>
+</html>
