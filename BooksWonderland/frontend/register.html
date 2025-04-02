@@ -1,0 +1,20 @@
+<!-- register.html -->
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Registrierung</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <form action="../backend/logic/register.php" method="POST">
+    <input type="text" name="vorname" placeholder="Vorname" required>
+    <input type="text" name="nachname" placeholder="Nachname" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <input type="text" name="benutzername" placeholder="Benutzername" required>
+    <input type="password" name="passwort" placeholder="Passwort" required>
+    <input type="password" name="passwort2" placeholder="Passwort wiederholen" required>
+    <button type="submit">Registrieren</button>
+  </form>
+</body>
+</html>
