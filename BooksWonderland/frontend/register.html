@@ -4,10 +4,11 @@
 <head>
   <meta charset="UTF-8">
   <title>Registrierung</title>
-  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-  <form action="../backend/logic/register.php" method="POST"> <!--erstezen mit ajax call aus jequery um frontend und backend zu trennen, nur mit json daten kommunizieren-->
+  <form id="registerForm">
     <input type="text" name="vorname" placeholder="Vorname" required>
     <input type="text" name="nachname" placeholder="Nachname" required>
     <input type="email" name="email" placeholder="Email" required>
@@ -17,4 +18,5 @@
     <button type="submit">Registrieren</button>
   </form>
 </body>
+<script src="./js/register.js"></script>
 </html>
