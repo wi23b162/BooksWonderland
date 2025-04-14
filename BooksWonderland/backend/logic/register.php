@@ -24,6 +24,27 @@ try {
     $hash
   ]);
 
+  if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+    echo json_encode(["success" => false, "message" => "Ungültige E-Mail-Adresse"]);
+    exit;
+  }
+
+$sql_check_username = "SELECT * FROM users WHERE benutzername = ?";
+$stmt_check_username = $pdo->prepare($sql_check_username);
+$stmt_check_username->execute([$data['benutzername']]);
+if ($stmt_check_username->rowCount() > 0) {
+    echo json_encode(["success" => false, "message" => "Benutzername bereits vergeben"]);
+    exit;
+}
+
+$sql_check_email = "SELECT * FROM users WHERE email = ?";
+$stmt_check_email = $pdo->prepare($sql_check_email);
+$stmt_check_email->execute([$data['email']]);
+if ($stmt_check_email->rowCount() > 0) {
+    echo json_encode(["success" => false, "message" => "E-Mail bereits vergeben"]);
+    exit;
+}
+
   echo json_encode(["success" => true, "message" => "Registrierung erfolgreich"]);
 } catch (Exception $e) {
   echo json_encode(["success" => false, "message" => "Fehler: " . $e->getMessage()]);
