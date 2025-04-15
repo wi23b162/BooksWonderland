@@ -3,7 +3,7 @@ $('#registerForm').on('submit', function(e) {
   e.preventDefault();
   const formData = Object.fromEntries(new FormData(this));
   $.ajax({
-    url: "http://localhost:8888/BooksWonderland/BooksWonderland/backend/logic/register.php",
+    url: "http://localhost:8888/BooksWonderland/backend/logic/register.php",
     method: 'POST',
     contentType: 'application/json',
     data: JSON.stringify(formData),
