@@ -12,22 +12,10 @@ if ($data['passwort'] !== $data['passwort2']) {
   exit;
 }
 
-try {
-  $hash = password_hash($data['passwort'], PASSWORD_DEFAULT);
-  $sql = "INSERT INTO users (vorname, nachname, email, benutzername, passwort) VALUES (?, ?, ?, ?, ?)";
-  $stmt = $pdo->prepare($sql);
-  $stmt->execute([
-    $data['vorname'],
-    $data['nachname'],
-    $data['email'],
-    $data['benutzername'],
-    $hash
-  ]);
-
-  if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
-    echo json_encode(["success" => false, "message" => "Ungültige E-Mail-Adresse"]);
-    exit;
-  }
+if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+  echo json_encode(["success" => false, "message" => "Ungültige E-Mail-Adresse"]);
+  exit;
+}
 
 $sql_check_username = "SELECT * FROM users WHERE benutzername = ?";
 $stmt_check_username = $pdo->prepare($sql_check_username);
@@ -44,6 +32,23 @@ if ($stmt_check_email->rowCount() > 0) {
     echo json_encode(["success" => false, "message" => "E-Mail bereits vergeben"]);
     exit;
 }
+
+try {
+  $hash = password_hash($data['passwort'], PASSWORD_DEFAULT);
+  
+  $sql = "INSERT INTO users (vorname, nachname, email, benutzername, passwort) VALUES (?, ?, ?, ?, ?)";
+  $stmt = $pdo->prepare($sql);
+  $stmt->execute([
+    $data['vorname'],
+    $data['nachname'],
+    $data['email'],
+    $data['benutzername'],
+    $hash
+  ]);
+
+  
+
+
 
   echo json_encode(["success" => true, "message" => "Registrierung erfolgreich"]);
 } catch (Exception $e) {
