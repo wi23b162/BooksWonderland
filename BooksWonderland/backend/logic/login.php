@@ -1,4 +1,3 @@
-// backend/logic/login.php
 <?php
 require_once '../config/dbaccess.php';
 session_start();

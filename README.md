@@ -14,5 +14,5 @@
 3. Projekt lokal unter `localhost:8888` ausführen
 4. `dbaccess.php` anpassen (Port 8889)
 
-## Team
+## Team 05
 - AI, JB
