@@ -1,44 +1,31 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Books Wonderland</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Books Wonderland</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-
-    <div id="nav"></div> 
-  
-    <h1>Willkommen bei Books Wonderland</h1>
-  
-    <section class="container mt-5">
-      <h2>Top 5 Bücher laut Leser*innen</h2>
-      <div class="row">
-        <div class="col-md-4 mb-3">
-          <div class="card">
-            <img src="img/book1.jpg" class="card-img-top" alt="Buch 1">
-            <div class="card-body">
-              <h5 class="card-title">Titel 1</h5>
-              <p class="card-text">⭐️⭐️⭐️⭐️☆ (4.2/5)</p>
-            </div>
+  <div id="nav"></div>
+  <h1>Willkommen bei Books Wonderland</h1>
+  <section class="container mt-5">
+    <h2>Top 5 Bücher laut Leser*innen</h2>
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <div class="card">
+          <img src="img/book1.jpg" class="card-img-top" alt="Buch 1">
+          <div class="card-body">
+            <h5 class="card-title">Titel 1</h5>
+            <p class="card-text">⭐️⭐️⭐️⭐️☆ (4.2/5)</p>
           </div>
         </div>
-        <!-- Weitere Bücher -->
       </div>
-    </section>
-  
-    <!-- SCRIPTS -->
-    <script src="js/menuHandler.js"></script>
-    <script>
-      $(document).ready(function () {
-        $("#nav").load("header.html", function () {
-          // Optional: nachladen von Loginstatus hier
-        });
-      });
-    </script>
-  </body>
-  
+      <!-- Weitere Bücher -->
+    </div>
+  </section>
+  <script src="js/menuHandler.js"></script>
+</body>
 </html>

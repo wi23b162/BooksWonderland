@@ -3,11 +3,15 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registrierung</title>
-  <link rel="stylesheet" href="../frontend/css/style.css">
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
+
+  <div id="nav"></div>
+
   <form id="registerForm">
     <input type="text" name="vorname" placeholder="Vorname" required>
     <input type="text" name="nachname" placeholder="Nachname" required>
@@ -17,6 +21,31 @@
     <input type="password" name="passwort2" placeholder="Passwort wiederholen" required>
     <button type="submit">Registrieren</button>
   </form>
-  <script src="js/menuHandler.js"></script
+
+  <!-- Menü & Registrierungsskript -->
+  <script src="js/menuHandler.js"></script>
+  <script>
+    $(document).ready(function () {
+      console.log("register.js inline geladen");
+
+      $('#registerForm').on('submit', function(e) {
+        e.preventDefault();
+        const formData = Object.fromEntries(new FormData(this));
+        $.ajax({
+          url: "../backend/logic/register.php",
+          method: 'POST',
+          contentType: 'application/json',
+          data: JSON.stringify(formData),
+          success: function(response) {
+            alert(response.message);
+            if (response.success) {
+              window.location.href = 'login.html';
+            }
+          }
+        });
+      });
+    });
+  </script>
+
 </body>
 </html>
