@@ -4,7 +4,7 @@ header("Content-Type: text/html");
 
 if (isset($_SESSION['user'])) {
     $user = $_SESSION['user'];
-    $vorname = htmlspecialchars($user['vorname']); // für Sicherheit
+    $vorname = htmlspecialchars($user['vorname']);
 
     echo "<p>Hallo, $vorname!</p>";
     echo '<nav>';
