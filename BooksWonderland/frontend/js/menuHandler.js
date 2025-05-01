@@ -1,3 +1,5 @@
+// frontend/js/menuHandler.js
+
 $(document).ready(function () {
   $.get('../backend/logic/sessionStatus.php', function(user) {
     let html = '<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">';
@@ -24,16 +26,17 @@ $(document).ready(function () {
 
     html += '</ul></div></div></nav>';
     $('#nav').html(html);
-  });
 
-  // Logout-Handler
-  $(document).on('click', '#logout-link', function (e) {
-    e.preventDefault();
-    $.get('../backend/logic/logout.php', function(response) {
-      if (response.success) {
-        alert(response.message);
-        window.location.href = 'login.html';
-      }
+    // Logout-Handler wird erst NACH dem HTML-Render aktiviert:
+    $('#logout-link').on('click', function (e) {
+      e.preventDefault();
+      console.log("Logout geklickt");
+      $.get('../backend/logic/logout.php', function(response) {
+        if (response.success) {
+          alert(response.message);
+          window.location.href = 'login.html';
+        }
+      });
     });
   });
 });
