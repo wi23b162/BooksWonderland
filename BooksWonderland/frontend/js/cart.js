@@ -1,32 +1,29 @@
 $(document).ready(function () {
-    // Überprüfen, ob der Warenkorb im LocalStorage gespeichert ist
+    // Warenkorb aus localStorage abrufen
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    // Funktion, um den Warenkorb anzuzeigen
+    // Warenkorb anzeigen
     function updateCart() {
         const cartList = $('#cart-list');
-        cartList.empty(); // Warenkorb zuerst leeren
+        cartList.empty();
 
         if (cart.length === 0) {
             cartList.append('<li class="list-group-item">Ihr Warenkorb ist leer.</li>');
         } else {
             cart.forEach(function (item) {
                 cartList.append(
-                    `<li class="list-group-item">
-                        ${item.product} - ${item.quantity} Stück
-                    </li>`
+                    `<li class="list-group-item">${item.product.title} - ${item.quantity} Stück</li>`
                 );
             });
         }
     }
 
-    // Warenkorb anzeigen, wenn die Seite geladen wird
-    updateCart();
+    updateCart();  // Warenkorb beim Laden der Seite anzeigen
 
-    // Button zum Leeren des Warenkorbs
+    // Leeren des Warenkorbs
     $('#clear-cart').click(function () {
-        localStorage.removeItem('cart'); // Warenkorb aus dem LocalStorage entfernen
-        cart = []; // Warenkorb-Array zurücksetzen
-        updateCart(); // Warenkorb aktualisieren
+        localStorage.removeItem('cart');  // Warenkorb aus localStorage entfernen
+        cart = [];  // Leeren des Warenkorb-Arrays
+        updateCart();  // Warenkorb aktualisieren
     });
 });
