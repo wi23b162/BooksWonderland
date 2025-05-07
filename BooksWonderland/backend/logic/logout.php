@@ -11,4 +11,4 @@ if (isset($_COOKIE['user_id'])) {
 header('Content-Type: application/json');
 echo json_encode(["success" => true, "message" => "Logout erfolgreich"]);
 ?>
-?>
+

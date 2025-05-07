@@ -1,3 +1,4 @@
+// backend/logic/login.php
 <?php
 require_once '../config/dbaccess.php';
 session_start();
@@ -24,8 +25,14 @@ if (!password_verify($data['passwort'], $user['passwort'])) {
   exit;
 }
 
-$_SESSION['user'] = $user;
+// Nur sichere und notwendige Werte in die Session speichern
+$_SESSION['user'] = [
+  'id' => $user['id'],
+  'vorname' => $user['vorname'],
+  'is_admin' => $user['is_admin'] ?? false
+];
 
+// Optional: Login-Cookie setzen
 if (!empty($data['remember'])) {
   setcookie("user_id", $user['id'], time() + (86400 * 30), "/");
 }

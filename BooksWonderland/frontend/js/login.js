@@ -1,3 +1,4 @@
+// frontend/js/login.js
 $('#loginForm').on('submit', function(e) {
   e.preventDefault();
   const formData = Object.fromEntries(new FormData(this));
