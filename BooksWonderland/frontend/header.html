@@ -1,8 +1,13 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index.html">Books Wonderland</a>
+            <!-- Logo als Link zur Startseite -->
+            <a class="navbar-brand" href="index.html">
+                <!-- Das Logo-Bild als Link zur Startseite -->
+                <img src="./images/logo.png" alt="Books Wonderland Logo" style="max-width: 150px; height: auto;">
+            </a>
 
+            <!-- Hamburger-Menü (Für mobile Ansicht) -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -23,6 +28,7 @@
                         <a class="nav-link" href="login.html">Login</a>
                     </li>
 
+                    <!-- Dynamische Links für eingeloggte Benutzer -->
                     <li id="account-link" class="nav-item"></li>
                     <li id="login-link" class="nav-item"></li>
                 </ul>
