@@ -11,21 +11,37 @@
 <body>
   <div id="nav"></div>
   <h1>Willkommen bei Books Wonderland</h1>
-  <section class="container mt-5">
-    <h2>Top 5 Bücher laut Leser*innen</h2>
+
+  <!-- Produktübersicht -->
+  <div class="container">
+    <h2>Top 5 Bücher</h2>
     <div class="row">
       <div class="col-md-4 mb-3">
         <div class="card">
-          <img src="img/book1.jpg" class="card-img-top" alt="Buch 1">
+          <img src="images/products/book1.jpg" class="card-img-top" alt="Buch 1">
           <div class="card-body">
             <h5 class="card-title">Titel 1</h5>
             <p class="card-text">⭐️⭐️⭐️⭐️☆ (4.2/5)</p>
+            <button class="btn btn-primary add-to-cart" data-product="book1">Zum Warenkorb hinzufügen</button>
           </div>
         </div>
       </div>
-      <!-- Weitere Bücher -->
+<!-- Weitere Produkte hier -->
+      <div class="col-md-4 mb-3">
+        <div class="card">
+          <img src="frontend/images/products/book2.jpg" class="card-img-top" alt="Buch 2">
+          <div class="card-body">
+            <h5 class="card-title">Titel 2</h5>
+            <p class="card-text">⭐️⭐️⭐️⭐️⭐️ (5/5)</p>
+            <button class="btn btn-primary add-to-cart" data-product="book2">Zum Warenkorb hinzufügen</button>
+          </div>
+        </div>
+      </div>
+<!-- Weitere Bücher hinzufügen -->
     </div>
-  </section>
+  </div>
+
+  
   <script src="js/menuHandler.js"></script>
 </body>
 </html>
