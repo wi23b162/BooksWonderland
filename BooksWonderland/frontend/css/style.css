@@ -1,32 +1,105 @@
-/* css/style.css */
+/* Allgemeines Layout */
 body {
-    font-family: Arial, sans-serif;
-    background: #f0f0f0;
-    padding: 20px;
-  }
-  
-  form {
-    background: white;
-    padding: 20px;
-    max-width: 400px;
-    margin: auto;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  }
-  
-  input {
-    display: block;
-    width: 100%;
-    margin-bottom: 10px;
-    padding: 10px;
-  }
-  
-  button {
-    padding: 10px;
-    background-color: #0077cc;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
+  background-color: #084A5E; /* dunkles Blau als Grundfarbe */
+  color: #FFFFFF;
+  font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Logo & Header */
+header {
+  background-color: #007E87; /* Türkisblau */
+  padding: 1rem;
+  text-align: center;
+}
+
+header img {
+  height: 80px;
+}
+
+/* Navigation */
+nav {
+  background-color: #007E87;
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem;
+}
+
+nav a {
+  color: #FFFFFF;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: #FFC932; /* Gelb */
+}
+
+/* Buttons */
+button {
+  background-color: #FFC932; /* Gelb */
+  color: #084A5E;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #D92E7F; /* Magenta */
+  color: #FFFFFF;
+}
+
+/* Formularfelder */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+select {
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  margin: 5px 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Karten / Boxen */
+.card {
+  background-color: #24B080; /* Smaragdgrün */
+  color: #FFFFFF;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Footer */
+footer {
+  background-color: #007E87;
+  text-align: center;
+  padding: 1rem;
+  color: #FFFFFF;
+}
+
+/* Utility */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+h1, h2, h3 {
+  color: #FFC932; /* Gelb */
+}
+
+a {
+  color: #FFC932;
+}
+
+a:hover {
+  color: #FFFFFF;
+}

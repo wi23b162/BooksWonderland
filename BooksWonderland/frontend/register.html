@@ -1,30 +1,36 @@
-<!-- register.html -->
 <!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registrierung</title>
+  
   <link rel="stylesheet" href="css/style.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 <body>
 
   <div id="nav"></div>
 
-  <form id="registerForm">
-    <input type="text" name="vorname" placeholder="Vorname" required>
-    <input type="text" name="nachname" placeholder="Nachname" required>
-    <input type="email" name="email" placeholder="Email" required>
-    <input type="text" name="benutzername" placeholder="Benutzername" required>
-    <input type="password" name="passwort" placeholder="Passwort" required>
-    <input type="password" name="passwort2" placeholder="Passwort wiederholen" required>
-    <button type="submit">Registrieren</button>
-  </form>
+  <div class="container mt-5">
+    <h1 class="mb-4">Registrierung</h1>
+    <form id="registerForm">
+      <input type="text" name="vorname" placeholder="Vorname" required class="form-control mb-2">
+      <input type="text" name="nachname" placeholder="Nachname" required class="form-control mb-2">
+      <input type="email" name="email" placeholder="Email" required class="form-control mb-2">
+      <input type="text" name="benutzername" placeholder="Benutzername" required class="form-control mb-2">
+      <input type="password" name="passwort" placeholder="Passwort" required class="form-control mb-2">
+      <input type="password" name="passwort2" placeholder="Passwort wiederholen" required class="form-control mb-2">
+      <button type="submit" class="btn btn-success">Registrieren</button>
+    </form>
+  </div>
 
-  <!-- Menü & Registrierungsskript -->
+  
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
   <script src="js/menuHandler.js"></script>
   <script src="js/register.js"></script>
-
 </body>
 </html>

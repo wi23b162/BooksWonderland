@@ -2,32 +2,36 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Books Wonderland</title>
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 <body>
 
-  <!-- Dynamischer Header -->
   <div id="nav"></div>
 
-  <h1 class="text-center my-5">Willkommen bei Books Wonderland</h1>
+  <main class="container mt-5">
+    <h1>Willkommen bei Books Wonderland</h1>
+    <p>Entdecke deine magische Bücherwelt – modern, farbenfroh und voller Fantasie.</p>
 
-  <!-- Produktübersicht (dynamisch erzeugt in JS) -->
-  <div class="container">
-    <h2>Unsere Produkte</h2>
-    <div class="row" id="product-list">
-        <!-- Hier werden die Produktkarten von products.js eingefügt -->
+    <div class="card p-4">
+      <h2>Buchtipp des Tages</h2>
+      <p>Erlebe Abenteuer mit unseren neuesten Fantasy-Romanen!</p>
+      <button class="btn btn-primary">Jetzt entdecken</button>
     </div>
-  </div>
+  </main>
 
+  <footer class="text-center mt-5 mb-3">
+    <p>&copy; 2025 Books Wonderland – Alle Rechte vorbehalten</p>
+  </footer>
 
-  <!-- Füge die Skripte hinzu -->
-  <script src="js/products.js"></script> <!-- Dies lädt deine Produkte dynamisch -->
-  <script src="js/menuHandler.js"></script>  <!-- Menü-Handler -->
-  <script src="js/cart.js"></script>  <!-- Warenkorb-Logik -->
+  
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 
+  <script src="js/menuHandler.js"></script>
 </body>
 </html>
