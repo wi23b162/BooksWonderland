@@ -1,6 +1,7 @@
+
 /* Allgemeines Layout */
 body {
-  background-color: #084A5E; /* dunkles Blau als Grundfarbe */
+  background-color: #084A5E;
   color: #FFFFFF;
   font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
   margin: 0;
@@ -9,7 +10,7 @@ body {
 
 /* Logo & Header */
 header {
-  background-color: #007E87; /* Türkisblau */
+  background-color: #007E87;
   padding: 1rem;
   text-align: center;
 }
@@ -34,12 +35,12 @@ nav a {
 }
 
 nav a:hover {
-  color: #FFC932; /* Gelb */
+  color: #FFC932;
 }
 
 /* Buttons */
 button {
-  background-color: #FFC932; /* Gelb */
+  background-color: #FFC932;
   color: #084A5E;
   border: none;
   padding: 10px 20px;
@@ -50,8 +51,13 @@ button {
 }
 
 button:hover {
-  background-color: #D92E7F; /* Magenta */
+  background-color: #D92E7F;
   color: #FFFFFF;
+}
+
+button:focus {
+  outline: 2px solid #FFC932;
+  outline-offset: 3px;
 }
 
 /* Formularfelder */
@@ -67,14 +73,27 @@ select {
   box-sizing: border-box;
 }
 
+/* Suchfeld hervorheben */
+#search-input {
+  background-color: #fff;
+  color: #000;
+  font-size: 1.05rem;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
 /* Karten / Boxen */
 .card {
-  background-color: #24B080; /* Smaragdgrün */
+  background-color: #24B080;
   color: #FFFFFF;
   border-radius: 10px;
   padding: 20px;
   margin: 20px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 /* Footer */
@@ -85,26 +104,8 @@ footer {
   color: #FFFFFF;
 }
 
-/* Utility */
-.container {
-  max-width: 1200px;
-  margin: auto;
-  padding: 20px;
-}
-
-h1, h2, h3 {
-  color: #FFC932; /* Gelb */
-}
-
-a {
-  color: #FFC932;
-}
-
-a:hover {
-  color: #FFFFFF;
-}
 footer.footer {
-  background-color: #007E87; /* oder dein Footer-Hintergrund */
+  background-color: #007E87;
   color: #FFFFFF;
   padding: 1rem 0;
   text-align: center;
@@ -119,4 +120,38 @@ footer.footer a {
 
 footer.footer a:hover {
   color: #FFC932;
+}
+
+/* Utility */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+h1, h2, h3 {
+  color: #FFC932;
+}
+
+a {
+  color: #FFC932;
+}
+
+a:hover {
+  color: #FFFFFF;
+}
+
+/* Drop-Zone */
+#drop-zone {
+  min-height: 100px;
+  border: 2px dashed #007E87;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  transition: background-color 0.3s, border-color 0.3s;
+  cursor: pointer;
+}
+
+#drop-zone.drag-over {
+  background-color: #d0f0ff;
+  border-color: #084A5E;
 }

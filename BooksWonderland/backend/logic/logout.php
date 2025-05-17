@@ -8,5 +8,15 @@ if (isset($_COOKIE['user_id'])) {
 }
 
 header('Content-Type: application/json');
-echo json_encode(["success" => true, "message" => "Logout erfolgreich"]);
+
+// Debug-Ausgabe zur Prüfung
+$response = [
+  "success" => true,
+  "message" => "Logout erfolgreich",
+  "session_destroyed" => true,
+  "cookie_deleted" => !isset($_COOKIE['user_id']),
+  "client_note" => "Bitte sicherstellen, dass localStorage manuell im Frontend gelöscht wird."
+];
+
+echo json_encode($response);
 ?>

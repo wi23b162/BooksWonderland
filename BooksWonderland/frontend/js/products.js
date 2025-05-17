@@ -1,129 +1,135 @@
 $(document).ready(function () {
-    const products = [
-        {
-            id: 'book1',
-            title: 'Harry Potter und der Stein der Weisen',
-            author: 'J.K Rowling',
-            price: '15.99 €',
-            description: 'Ein spannendes Abenteuerbuch.',
-            image: '../images/products/HarryPotter1.png',
-            rating: 4.5
-        },
-        {
-            id: 'book2',
-            title: 'Mimik',
-            author: 'Sebastian Fitzek',
-            price: '12.99 €',
-            description: 'Ein Roman über die Geheimnisse des Lebens.',
-            image: '../images/products/Mimik.png',
-            rating: 4.2
-        },
-        // Weitere Produkte hier hinzufügen...
-    ];
+  let allProducts = [];
 
-    // Dynamische Erstellung der Produktkarten
+  $.getJSON("../backend/logic/getProducts.php", function (data) {
+    allProducts = data;
+    renderProducts(allProducts);
+  });
+
+  function renderProducts(products) {
+    const productList = $('#product-list');
+    productList.empty();
+
     products.forEach(product => {
-        // Erstelle das Produkt-Div (div mit Klasse 'col-md-4 mb-3')
-        const productDiv = document.createElement('div');
-        productDiv.classList.add('col-md-4', 'mb-3');
-        
-        // Erstelle die Karte (div mit Klasse 'card')
-        const card = document.createElement('div');
-        card.classList.add('card');
-        productDiv.appendChild(card);
+      const shortDescription = product.description.length > 100
+        ? product.description.substring(0, 100) + '…'
+        : product.description;
 
-        // Erstelle das Produktbild (img-Tag)
-        const img = document.createElement('img');
-        img.classList.add('card-img-top');
-        img.src = product.image;
-        img.alt = product.title;
-        card.appendChild(img);
+      const formattedPrice = parseFloat(product.price).toFixed(2);
 
-        // Erstelle den Card Body (div mit Klasse 'card-body')
-        const cardBody = document.createElement('div');
-        cardBody.classList.add('card-body');
-        card.appendChild(cardBody);
-
-        // Erstelle den Titel (h5-Tag)
-        const title = document.createElement('h5');
-        title.classList.add('card-title');
-        title.textContent = product.title;
-        cardBody.appendChild(title);
-
-        // Erstelle den Autor (p-Tag)
-        const author = document.createElement('p');
-        author.classList.add('card-text');
-        author.textContent = `Autor: ${product.author}`;
-        cardBody.appendChild(author);
-
-        // Erstelle die Beschreibung (p-Tag)
-        const description = document.createElement('p');
-        description.classList.add('card-text');
-        description.textContent = product.description;
-        cardBody.appendChild(description);
-
-        // Erstelle den Preis (p-Tag)
-        const price = document.createElement('p');
-        price.classList.add('card-text');
-        price.innerHTML = `<strong>Preis: ${product.price}</strong>`;
-        cardBody.appendChild(price);
-
-        // Erstelle die Bewertung (p-Tag)
-        const rating = document.createElement('p');
-        rating.classList.add('card-text');
-        rating.textContent = `Bewertung: ⭐️ ${product.rating}`;
-        cardBody.appendChild(rating);
-
-        // Erstelle den "Zum Warenkorb hinzufügen"-Button (button-Tag)
-        const addButton = document.createElement('button');
-        addButton.classList.add('btn', 'btn-primary', 'add-to-cart');
-        addButton.textContent = 'Zum Warenkorb hinzufügen';
-        addButton.setAttribute('data-product', product.id); // Speichere die Produkt-ID im Button
-        cardBody.appendChild(addButton);
-
-        // Füge das Produkt-Div in den DOM ein
-        document.getElementById('product-list').appendChild(productDiv);
-
-        // Warenkorb-Funktionalität
-        addButton.addEventListener('click', function () {
-            // Warenkorb aus localStorage abrufen oder leeres Array erstellen
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-            // Prüfen, ob das Produkt bereits im Warenkorb ist
-            const existingProduct = cart.find(item => item.product.id === product.id);
-
-            if (existingProduct) {
-                existingProduct.quantity += 1; // Produktanzahl erhöhen
-            } else {
-                cart.push({ product, quantity: 1 });
-            }
-
-            // Warenkorb im localStorage speichern
-            localStorage.setItem('cart', JSON.stringify(cart));
-            updateCart();
-        });
+      const cardHtml = `
+        <div class="col-md-4 mb-3">
+          <div class="card h-100" draggable="true" data-id="${product.id}">
+            <img src="${product.image}" class="card-img-top" alt="${product.title}">
+            <div class="card-body">
+              <h5 class="card-title">${product.title}</h5>
+              <p class="card-text">Autor: ${product.author}</p>
+              <p class="card-text">${shortDescription}</p>
+              <p class="card-text"><strong>Preis: ${formattedPrice} €</strong></p>
+              <p class="card-text">Bewertung: ⭐️ ${product.rating}</p>
+              <button class="btn btn-primary add-to-cart" data-id="${product.id}">Zum Warenkorb hinzufügen</button>
+              <button class="btn btn-outline-info show-details" data-id="${product.id}">Details</button>
+            </div>
+          </div>
+        </div>`;
+      productList.append(cardHtml);
     });
+  }
 
-    // Warenkorb anzeigen
-    function updateCart() {
-        const cart = JSON.parse(localStorage.getItem('cart')) || [];
-        const cartList = document.getElementById('cart-list');
-        cartList.innerHTML = '';  // Leere den Warenkorb
+  // Live-Suche
+  $('#search-input').on('input', function () {
+    const query = $(this).val().toLowerCase();
+    const filtered = allProducts.filter(p =>
+      p.title.toLowerCase().includes(query) ||
+      p.author.toLowerCase().includes(query)
+    );
+    renderProducts(filtered);
+  });
 
-        if (cart.length === 0) {
-            const emptyMessage = document.createElement('li');
-            emptyMessage.classList.add('list-group-item');
-            emptyMessage.textContent = 'Ihr Warenkorb ist leer.';
-            cartList.appendChild(emptyMessage);
-        } else {
-            cart.forEach(item => {
-                const cartItem = document.createElement('li');
-                cartItem.classList.add('list-group-item');
-                cartItem.textContent = `${item.product.title} - ${item.quantity} Stück`;
-                cartList.appendChild(cartItem);
-            });
-        }
+  // Drag-Start
+  $('#product-list').on('dragstart', '.card', function (e) {
+    e.originalEvent.dataTransfer.setData("text/plain", $(this).data('id'));
+  });
+
+  // Drop-Zone
+  const dropZone = $('#drop-zone');
+
+  dropZone.on('dragover', function (e) {
+    e.preventDefault();
+    $(this).addClass('drag-over');
+  });
+
+  dropZone.on('dragleave', function () {
+    $(this).removeClass('drag-over');
+  });
+
+  dropZone.on('drop', function (e) {
+    e.preventDefault();
+    $(this).removeClass('drag-over');
+    const productId = e.originalEvent.dataTransfer.getData("text/plain");
+    const product = allProducts.find(p => p.id == productId);
+
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const existing = cart.find(item => item.product.id == productId);
+    if (existing) {
+      existing.quantity++;
+    } else {
+      cart.push({ product, quantity: 1 });
+    }
+    localStorage.setItem('cart', JSON.stringify(cart));
+    alert(`${product.title} wurde dem Warenkorb per Drag & Drop hinzugefügt.`);
+  });
+
+  // Add to cart via Button
+  $('#product-list').on('click', '.add-to-cart', function () {
+    const productId = $(this).data('id');
+    const product = allProducts.find(p => p.id == productId);
+
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const existing = cart.find(item => item.product.id == productId);
+    if (existing) {
+      existing.quantity++;
+    } else {
+      cart.push({ product, quantity: 1 });
     }
 
-    updateCart();  // Warenkorb beim Laden der Seite anzeigen
+    localStorage.setItem('cart', JSON.stringify(cart));
+    alert(`${product.title} wurde zum Warenkorb hinzugefügt.`);
+  });
+
+  // Modal: Details anzeigen
+  let lastFocusedButton = null;
+
+  $('#product-list').on('click', '.show-details', function () {
+    lastFocusedButton = this;
+    const productId = $(this).data('id');
+
+    $.getJSON(`../backend/logic/getProductById.php?id=${productId}`, function (product) {
+      if (product.error) {
+        $('#modal-body-content').html('<p class="text-danger">Produkt nicht gefunden.</p>');
+      } else {
+        $('#modal-body-content').html(`
+          <div class="row">
+            <div class="col-md-6">
+              <img src="${product.image}" alt="${product.title}" class="img-fluid">
+            </div>
+            <div class="col-md-6">
+              <h4>${product.title}</h4>
+              <p><strong>Autor:</strong> ${product.author}</p>
+              <p>${product.description}</p>
+              <p><strong>Preis:</strong> ${parseFloat(product.price).toFixed(2)} €</p>
+              <p><strong>Bewertung:</strong> ⭐️ ${product.rating}</p>
+            </div>
+          </div>
+        `);
+      }
+      $('#productModal').modal('show');
+    });
+  });
+
+  $('#productModal').on('hidden.bs.modal', function () {
+    if (lastFocusedButton) {
+      lastFocusedButton.focus();
+    }
+  });
 });
