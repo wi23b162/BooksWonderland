@@ -16,3 +16,12 @@
 
 ## Team 05
 - AI, JB
+
+## Sprint 1 abgeschlossen
+
+### Features:
+- Benutzerregistrierung inkl. Validierung und Passwortverschlüsselung
+- Admin-User-Unterstützung
+- Login mit Session + optionalem Cookie (Eingeloggt bleiben)
+- Logout mit Session- & Cookie-Reset
+- Dynamische Navigation via JS
