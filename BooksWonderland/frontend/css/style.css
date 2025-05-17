@@ -104,13 +104,19 @@ a:hover {
   color: #FFFFFF;
 }
 footer.footer {
-  background-color: #007E87;
+  background-color: #007E87; /* oder dein Footer-Hintergrund */
   color: #FFFFFF;
   padding: 1rem 0;
   text-align: center;
-  position: relative;
-  bottom: 0;
-  width: 100%;
-  font-size: 0.9rem;
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+}
+
+footer.footer a {
+  color: #FFFFFF;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 0 8px;
+}
+
+footer.footer a:hover {
+  color: #FFC932;
 }
