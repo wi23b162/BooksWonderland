@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Gutscheine erstellen – Admin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <div id="nav"></div>
+
+  <main class="container mt-5">
+    <h1>Gutschein erstellen</h1>
+    <form id="coupon-form">
+      <div class="form-group">
+        <label for="code">Gutscheincode</label>
+        <input type="text" class="form-control" id="code" required>
+      </div>
+      <div class="form-group">
+        <label for="amount">Betrag (€)</label>
+        <input type="number" step="0.01" class="form-control" id="amount" required>
+      </div>
+      <button type="submit" class="btn btn-success">Gutschein speichern</button>
+    </form>
+
+    <div class="alert alert-success mt-3 d-none" id="coupon-success">✅ Gutschein gespeichert!</div>
+  </main>
+
+  <div id="footer"></div>
+
+  <script src="js/loadHeaderFooter.js"></script>
+  <script src="js/menuHandler.js"></script>
+  <script src="js/adminCoupons.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

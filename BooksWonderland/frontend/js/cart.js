@@ -31,23 +31,45 @@ $(document).ready(function () {
         `);
       });
 
-      // Versand + Steuer (Österreich: 10 % Büchersteuer)
+      // Gutschein prüfen
+      const coupon = JSON.parse(localStorage.getItem('voucher'));
+      let discount = 0;
+      if (coupon) {
+        if (coupon.type === 'percent') {
+          discount = subtotal * (coupon.amount / 100);
+        } else {
+          discount = coupon.amount;
+        }
+      }
+
       const versand = 3.90;
       const steuerSatz = 0.10;
-      const steuerBetrag = subtotal * steuerSatz;
-      const gesamt = subtotal + versand;
+      const steuerBetrag = (subtotal - discount) * steuerSatz;
+      const gesamt = subtotal - discount + versand;
 
       cartList.append(`
         <li class="list-group-item d-flex justify-content-between">
           <span>Zwischensumme:</span>
           <strong>${subtotal.toFixed(2)} €</strong>
         </li>
+      `);
+
+      if (coupon) {
+        cartList.append(`
+          <li class="list-group-item d-flex justify-content-between text-success">
+            <span>Gutschein (${coupon.amount}${coupon.type === 'percent' ? '%' : '€'}):</span>
+            <strong>- ${discount.toFixed(2)} €</strong>
+          </li>
+        `);
+      }
+
+      cartList.append(`
         <li class="list-group-item d-flex justify-content-between">
           <span>Versandkosten:</span>
           <strong>${versand.toFixed(2)} €</strong>
         </li>
         <li class="list-group-item d-flex justify-content-between">
-          <span>inkl. 10% MwSt. (auf Bücher):</span>
+          <span>inkl. 10% MwSt.:</span>
           <strong>${steuerBetrag.toFixed(2)} €</strong>
         </li>
         <li class="list-group-item d-flex justify-content-between bg-light font-weight-bold">
@@ -95,3 +117,8 @@ $(document).ready(function () {
 
   updateCart();
 });
+
+  $('#checkout').on('click', function () {
+    const voucher = localStorage.getItem('voucher');
+    window.location.href = voucher ? 'payment.html' : 'gutschein.html';
+  });

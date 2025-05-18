@@ -24,8 +24,17 @@ $(document).ready(function () {
     html += '<li class="nav-item"><a class="nav-link text-white font-weight-bold" href="cart.html">Warenkorb</a></li>';
 
     if (user.loggedIn) {
-      html += '<li class="nav-item"><a class="nav-link text-white font-weight-bold" href="#">Hallo, ' + user.name + '</a></li>';
-      html += '<li class="nav-item"><a class="nav-link text-white font-weight-bold" href="#" id="logout-link">Logout</a></li>';
+      html += '<li class="nav-item dropdown">';
+      html += '<a class="nav-link dropdown-toggle text-white font-weight-bold" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
+      html += 'Hallo, ' + user.name + '</a>';
+      html += '<div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">';
+      html += '<a class="dropdown-item" href="invoicelist.html">📄 Letzte Rechnung</a>';
+      html += '<a class="dropdown-item" href="payment.html">💳 Zahlungsmethode</a>';
+      html += '<a class="dropdown-item" href="profil.html">⚙️ Kontodaten verwalten</a>';
+      html += '<div class="dropdown-divider"></div>';
+      html += '<a class="dropdown-item text-danger" href="#" id="logout-link">🚪 Logout</a>';
+      html += '</div></li>';
+
       if (user.isAdmin) {
         html += '<li class="nav-item"><a class="nav-link text-white font-weight-bold" href="admin.html">Adminbereich</a></li>';
       }
