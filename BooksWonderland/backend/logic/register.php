@@ -1,4 +1,3 @@
-// backend/logic/register.php
 <?php
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
@@ -36,14 +35,20 @@ if ($stmt_check_email->rowCount() > 0) {
 try {
   $hash = password_hash($data['passwort'], PASSWORD_DEFAULT);
 
-  $sql = "INSERT INTO users (vorname, nachname, email, benutzername, passwort) VALUES (?, ?, ?, ?, ?)";
+  $sql = "INSERT INTO users (anrede, vorname, nachname, email, benutzername, passwort, adresse, adresszusatz, stadt, bundesland, plz) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
   $stmt = $pdo->prepare($sql);
   $stmt->execute([
+    $data['anrede'] ?? null,
     $data['vorname'],
     $data['nachname'],
     $data['email'],
     $data['benutzername'],
-    $hash
+    $hash,
+    $data['adresse'] ?? '',
+    $data['adresszusatz'] ?? '',
+    $data['stadt'] ?? '',
+    $data['bundesland'] ?? '',
+    $data['plz'] ?? ''
   ]);
 
   echo json_encode(["success" => true, "message" => "Registrierung erfolgreich"]);

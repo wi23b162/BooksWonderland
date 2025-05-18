@@ -4,32 +4,41 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registrierung</title>
-  
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 </head>
 <body>
-
   <div id="nav"></div>
 
   <div class="container mt-5">
     <h1 class="mb-4">Registrierung</h1>
     <form id="registerForm">
+      <select name="anrede" class="form-control mb-2" required>
+        <option value="">Anrede wählen...</option>
+        <option value="Frau">Frau</option>
+        <option value="Herr">Herr</option>
+        <option value="Divers">Divers</option>
+      </select>
       <input type="text" name="vorname" placeholder="Vorname" required class="form-control mb-2">
       <input type="text" name="nachname" placeholder="Nachname" required class="form-control mb-2">
-      <input type="email" name="email" placeholder="Email" required class="form-control mb-2">
       <input type="text" name="benutzername" placeholder="Benutzername" required class="form-control mb-2">
+      <input type="email" name="email" placeholder="E-Mail" required class="form-control mb-2">
       <input type="password" name="passwort" placeholder="Passwort" required class="form-control mb-2">
       <input type="password" name="passwort2" placeholder="Passwort wiederholen" required class="form-control mb-2">
+      <input type="text" name="adresse" placeholder="Adresse" required class="form-control mb-2">
+      <input type="text" name="adresszusatz" placeholder="Adresszusatz" class="form-control mb-2">
+      <input type="text" name="stadt" placeholder="Stadt" required class="form-control mb-2">
+      <input type="text" name="bundesland" placeholder="Bundesland" required class="form-control mb-2">
+      <input type="text" name="plz" placeholder="PLZ" required class="form-control mb-2">
       <button type="submit" class="btn btn-success">Registrieren</button>
     </form>
   </div>
+
   <div id="footer"></div>
+
   <script src="js/loadHeaderFooter.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-  
   <script src="js/menuHandler.js"></script>
   <script src="js/register.js"></script>
 </body>

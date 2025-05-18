@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Bestellhistorie – Books Wonderland</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <div id="nav"></div>
+
+  <main class="container mt-5">
+    <h1 class="mb-4">Ihre Bestellhistorie</h1>
+    <div id="orders-table-container">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Bestellnummer</th>
+            <th>Datum</th>
+            <th>Gesamtbetrag</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="orders-body">
+          <!-- Bestellungen werden hier eingefügt -->
+        </tbody>
+      </table>
+    </div>
+    <div id="no-orders" class="alert alert-info d-none">Sie haben noch keine Bestellungen aufgegeben.</div>
+  </main>
+
+  <div id="footer"></div>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+  <script src="js/loadHeaderFooter.js"></script>
+  <script src="js/orders.js"></script>
+  <script src="js/menuHandler.js"></script>
+</body>
+</html>
