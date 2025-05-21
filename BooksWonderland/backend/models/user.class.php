@@ -14,14 +14,13 @@ class User
   }
 
   public static function update(PDO $pdo, array $data): bool {
-  $stmt = $pdo->prepare("UPDATE users SET vorname = ?, nachname = ?, email = ?, is_admin = ? WHERE id = ?");
-  return $stmt->execute([
-    $data['vorname'],
-    $data['nachname'],
-    $data['email'],
-    $data['is_admin'],
-    $data['id']
-  ]);
-}
-
+    $stmt = $pdo->prepare("UPDATE users SET vorname = ?, nachname = ?, email = ?, is_admin = ? WHERE id = ?");
+    return $stmt->execute([
+      $data['vorname'],
+      $data['nachname'],
+      $data['email'],
+      $data['is_admin'],
+      $data['id']
+    ]);
+  }
 }

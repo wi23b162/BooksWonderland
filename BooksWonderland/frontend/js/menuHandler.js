@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  console.log("✅ menuHandler geladen");
+  console.log("menuHandler geladen");
 
   $.get('../backend/logic/sessionStatus.php', function (user) {
     console.log("sessionStatus Antwort:", user);
@@ -10,7 +10,6 @@ $(document).ready(function () {
           <a class="navbar-brand" href="index.html">
             <img src="images/logo.png" alt="Books Wonderland Logo" style="height: 50px;">
           </a>
-feature/addi-Sprint-4-Admin
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                   aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -26,7 +25,6 @@ feature/addi-Sprint-4-Admin
     if (user.loggedIn) {
       html += `
         <li class="nav-item dropdown">
-    feature/addi-Sprint-4-Admin
           <a class="nav-link dropdown-toggle text-white font-weight-bold" href="#" id="userDropdown" role="button"
              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Hallo, ${user.name}
@@ -88,6 +86,6 @@ feature/addi-Sprint-4-Admin
       });
     });
   }).fail(function () {
-    console.error("❌ Fehler beim Laden von sessionStatus.php");
+    console.error("Fehler beim Laden von sessionStatus.php");
   });
 });
