@@ -23,7 +23,7 @@ $(document).ready(function () {
         $('#feedback')
           .removeClass('d-none alert-success')
           .addClass('alert alert-danger')
-          .text('❌ Neue Passwörter stimmen nicht überein.');
+          .text('Neue Passwörter stimmen nicht überein.');
         return;
       }
     }
@@ -60,7 +60,7 @@ $(document).ready(function () {
   const msg = $('#password-msg').removeClass('text-danger text-success').text('');
 
   if (newPassword !== confirmPassword) {
-    msg.text('❌ Neue Passwörter stimmen nicht überein.').addClass('text-danger');
+    msg.text('Neue Passwörter stimmen nicht überein.').addClass('text-danger');
     return;
   }
 
@@ -75,14 +75,14 @@ $(document).ready(function () {
     }),
     success: function (res) {
       if (res.success) {
-        msg.text('✅ Passwort erfolgreich geändert.').addClass('text-success');
+        msg.text('Passwort erfolgreich geändert.').addClass('text-success');
         $('#password-change-form')[0].reset();
       } else {
-        msg.text('❌ ' + res.message).addClass('text-danger');
+        msg.text(res.message).addClass('text-danger');
       }
     },
     error: function () {
-      msg.text('❌ Fehler bei der Verbindung zum Server.').addClass('text-danger');
+      msg.text('Fehler bei der Verbindung zum Server.').addClass('text-danger');
     }
   });
 });

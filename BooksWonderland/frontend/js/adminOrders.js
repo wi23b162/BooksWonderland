@@ -1,14 +1,15 @@
 // admin-orders.js – Bestellungen laden und anzeigen
 
 $(document).ready(function () {
-  console.log("✅ adminOrders.js geladen");
+  console.log("adminOrders.js geladen");
 
   function loadOrders() {
-    $.get("../backend/logic/getOrders.php", function (orders) {
-      const table = $("#admin-orders-table tbody");
-      table.empty();
+  $.get("../backend/logic/getOrders.php", function (res) {
+    const table = $("#admin-orders-table tbody");
+    table.empty();
 
-      orders.forEach(order => {
+    if (res.success && Array.isArray(res.orders)) {
+      res.orders.forEach(order => {
         table.append(`
           <tr>
             <td>${order.id}</td>
@@ -20,8 +21,12 @@ $(document).ready(function () {
           </tr>
         `);
       });
-    });
-  }
+    } else {
+      table.append('<tr><td colspan="6" class="text-center text-danger">Keine Bestellungen gefunden.</td></tr>');
+    }
+  });
+}
+
 
   loadOrders();
 

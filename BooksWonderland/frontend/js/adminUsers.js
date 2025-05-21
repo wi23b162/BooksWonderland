@@ -1,34 +1,42 @@
 // admin-users.js – nur für Benutzerverwaltung
 
 $(document).ready(function () {
-  console.log("✅ adminUsers.js geladen");
+  console.log("adminUsers.js geladen");
 
   // Benutzer laden
   function loadUsers() {
-    $.get("../backend/logic/getUsers.php", function (users) {
-      const table = $("#admin-user-table tbody");
-      table.empty();
-      users.forEach((user) => {
-        table.append(`
-          <tr>
-            <td>${user.id}</td>
-            <td>${user.vorname} ${user.nachname}</td>
-            <td>${user.email}</td>
-            <td>${user.is_admin ? "Admin" : "Benutzer"}</td>
-            <td>${user.active ? "Aktiv" : "Deaktiviert"}</td>
-            <td>
-              <button class="btn btn-sm btn-info edit-user" data-id="${user.id}" data-vorname="${user.vorname}" data-nachname="${user.nachname}" data-email="${user.email}" data-admin="${user.is_admin}">Bearbeiten</button>
-            </td>
-            <td>
-              <button class="btn btn-sm btn-${user.active ? "danger" : "success"} toggle-user" data-id="${user.id}" data-active="${user.active}">
-                ${user.active ? "Deaktivieren" : "Aktivieren"}
-              </button>
-            </td>
-          </tr>
-        `);
-      });
+  $.get("../backend/logic/getUsers.php", function (res) {
+    const table = $("#admin-user-table tbody");
+    table.empty();
+
+    const users = res.users || [];
+
+    users.forEach((user) => {
+      table.append(`
+        <tr>
+          <td>${user.id}</td>
+          <td>${user.vorname} ${user.nachname}</td>
+          <td>${user.email}</td>
+          <td>${user.is_admin ? "Admin" : "Benutzer"}</td>
+          <td>${user.active ? "Aktiv" : "Deaktiviert"}</td>
+          <td>
+            <button class="btn btn-sm btn-info edit-user" data-id="${user.id}" data-vorname="${user.vorname}" data-nachname="${user.nachname}" data-email="${user.email}" data-admin="${user.is_admin}">Bearbeiten</button>
+          </td>
+          <td>
+            <button class="btn btn-sm btn-${user.active ? "danger" : "success"} toggle-user" data-id="${user.id}" data-active="${user.active}">
+              ${user.active ? "Deaktivieren" : "Aktivieren"}
+            </button>
+          </td>
+        </tr>
+      `);
     });
-  }
+
+    if (!users.length) {
+      table.append('<tr><td colspan="7" class="text-center text-muted">Keine Benutzer vorhanden.</td></tr>');
+    }
+  });
+}
+
 
   loadUsers();
 
@@ -63,11 +71,11 @@ $(document).ready(function () {
           $("#editUserModal").modal("hide");
           loadUsers();
         } else {
-          alert("❌ Fehler: " + res.message);
+          alert("Fehler: " + res.message);
         }
       },
       error: function () {
-        alert("❌ Serverfehler beim Speichern");
+        alert("Serverfehler beim Speichern");
       }
     });
   });
@@ -86,11 +94,11 @@ $(document).ready(function () {
         if (res.success) {
           loadUsers();
         } else {
-          alert("❌ Fehler: " + res.message);
+          alert("Fehler: " + res.message);
         }
       },
       error: function () {
-        alert("❌ Serverfehler beim Ändern des Status");
+        alert("Serverfehler beim Ändern des Status");
       }
     });
   });

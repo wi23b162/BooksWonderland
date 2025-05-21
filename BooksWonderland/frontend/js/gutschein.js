@@ -15,16 +15,16 @@ $('#voucher-form').on('submit', function(e) {
       alertBox.removeClass('d-none alert-success alert-danger');
       if (response.success) {
         alertBox.addClass('alert-success');
-        alertBox.html(`✅ ${response.message} – Rabatt: ${response.amount} ${response.type === 'percent' ? '%' : '€'}`);
+        alertBox.html(`${response.message} – Rabatt: ${response.amount} ${response.type === 'percent' ? '%' : '€'}`);
         localStorage.setItem('voucher', JSON.stringify(response));
       } else {
         alertBox.addClass('alert-danger');
-        alertBox.text(`❌ ${response.message}`);
+        alertBox.text(`${response.message}`);
         localStorage.removeItem('voucher');
       }
     },
     error: function(xhr) {
-      $('#result').removeClass('d-none').addClass('alert-danger').text("❌ Serverfehler beim Einlösen.");
+      $('#result').removeClass('d-none').addClass('alert-danger').text("Serverfehler beim Einlösen.");
     }
   });
 });

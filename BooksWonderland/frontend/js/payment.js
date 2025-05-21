@@ -14,12 +14,12 @@ $('#payment-form').on('submit', function(e) {
       if (response.success) {
         $('#confirmation').removeClass('d-none');
       } else {
-        alert("❌ Fehler: " + response.message);
+        alert("Fehler: " + response.message);
       }
       console.log("💾 Serverantwort:", response);
     },
     error: function(xhr) {
-      alert("❌ Serverfehler");
+      alert("Serverfehler");
       console.error(xhr.responseText);
     }
   });

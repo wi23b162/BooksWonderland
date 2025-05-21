@@ -53,7 +53,7 @@ $(document).ready(function () {
           $('#order-feedback')
             .removeClass('d-none alert-success')
             .addClass('alert alert-danger')
-            .text('❌ Fehler: ' + response.message);
+            .text('Fehler: ' + response.message);
         }
       },
       error: function () {
