@@ -18,6 +18,16 @@ $(document).ready(function () {
     e.preventDefault();
     const formData = Object.fromEntries(new FormData(this));
 
+    if (formData.neues_passwort || formData.neues_passwort2) {
+      if (formData.neues_passwort !== formData.neues_passwort2) {
+        $('#feedback')
+          .removeClass('d-none alert-success')
+          .addClass('alert alert-danger')
+          .text('❌ Neue Passwörter stimmen nicht überein.');
+        return;
+      }
+    }
+
     $.ajax({
       url: '../backend/logic/updateProfile.php',
       method: 'POST',
@@ -33,7 +43,10 @@ $(document).ready(function () {
         }
       },
       error: function () {
-        $('#feedback').removeClass('d-none').addClass('alert alert-danger').text('Serverfehler beim Speichern.');
+        $('#feedback')
+          .removeClass('d-none alert-success')
+          .addClass('alert alert-danger')
+          .text('Serverfehler beim Speichern.');
       }
     });
   });
