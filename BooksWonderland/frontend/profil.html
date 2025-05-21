@@ -1,66 +1,96 @@
 <!DOCTYPE html>
 <html lang="de">
-<head>
-  <meta charset="UTF-8">
-  <title>Meine Kontodaten – Books Wonderland</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-</head>
-<body>
-  <div id="nav"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Meine Kontodaten – Books Wonderland</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <div id="nav"></div>
 
-  <main class="container mt-5">
-    <h1 class="mb-4">Meine Kontodaten</h1>
-    <form id="profilForm">
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="anrede">Anrede</label>
-          <select class="form-control" id="anrede" name="anrede">
-            <option value="">Bitte wählen...</option>
-            <option value="Herr">Herr</option>
-            <option value="Frau">Frau</option>
-            <option value="Divers">Divers</option>
-          </select>
+    <main class="container mt-5">
+      <h1 class="mb-4">Meine Kontodaten</h1>
+      <form id="profilForm">
+        <!-- Persönliche Daten -->
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="anrede"><b>Anrede</b></label>
+            <select class="form-control" id="anrede" name="anrede">
+              <option value="">Bitte wählen...</option>
+              <option value="Herr">Herr</option>
+              <option value="Frau">Frau</option>
+              <option value="Divers">Divers</option>
+            </select>
+          </div>
         </div>
-      </div>
 
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="vorname">Vorname</label>
-          <input type="text" class="form-control" id="vorname" name="vorname" required>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="vorname"><b>Vorname</b></label>
+            <input type="text" class="form-control" id="vorname" name="vorname" required />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="nachname"><b>Nachname</b></label>
+            <input type="text" class="form-control" id="nachname" name="nachname" required />
+          </div>
         </div>
-        <div class="form-group col-md-6">
-          <label for="nachname">Nachname</label>
-          <input type="text" class="form-control" id="nachname" name="nachname" required>
-        </div>
-      </div>
 
-      <div class="form-group">
-        <label for="adresse">Adresse</label>
-        <input type="text" class="form-control" id="adresse" name="adresse">
-      </div>
+        <div class="form-group">
+          <label for="adresse"><b>Adresse</b></label>
+          <input type="text" class="form-control" id="adresse" name="adresse" />
+        </div>
 
-      <div class="form-group">
-        <label for="adresszusatz">Adresszusatz</label>
-        <input type="text" class="form-control" id="adresszusatz" name="adresszusatz">
-      </div>
+        <div class="form-group">
+          <label for="adresszusatz"><b>Adresszusatz</b></label>
+          <input type="text" class="form-control" id="adresszusatz" name="adresszusatz" />
+        </div>
 
-      <div class="form-row">
-        <div class="form-group col-md-4">
-          <label for="stadt">Stadt</label>
-          <input type="text" class="form-control" id="stadt" name="stadt">
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="stadt"><b>Stadt</b></label>
+            <input type="text" class="form-control" id="stadt" name="stadt" />
+          </div>
+          <div class="form-group col-md-4">
+            <label for="bundesland"><b>Bundesland</b></label>
+            <input type="text" class="form-control" id="bundesland" name="bundesland" />
+          </div>
+          <div class="form-group col-md-4">
+            <label for="plz"><b>PLZ</b></label>
+            <input type="text" class="form-control" id="plz" name="plz" />
+          </div>
         </div>
-        <div class="form-group col-md-4">
-          <label for="bundesland">Bundesland</label>
-          <input type="text" class="form-control" id="bundesland" name="bundesland">
+
+        <!-- Passwort ändern -->
+        <div class="card mt-4">
+          <div class="card-body">
+            <h5 class="card-title"><b>Passwort ändern</b></h5>
+
+            <div class="form-group">
+              <label for="old-password" style="color: #000000;"><b>Altes Passwort eingeben:</b></label>
+              <input type="password" id="old-password" class="form-control" style="background-color: #f9e7c0; color: #000;" />
+            </div>
+
+            <div class="form-group">
+              <label for="new-password" style="color: #000000;"><b>Neues Passwort:</b></label>
+              <input type="password" id="new-password" class="form-control" style="background-color: #f9e7c0; color: #000;" />
+            </div>
+
+            <div class="form-group">
+              <label for="confirm-password" style="color: #000000;"><b>Neues Passwort wiederholen:</b></label>
+              <input type="password" id="confirm-password" class="form-control" style="background-color: #f9e7c0; color: #000;" />
+            </div>
+
+            <button type="button" id="change-password-btn" class="btn btn-primary">
+              Passwort speichern
+            </button>
+
+            <div id="password-msg" class="mt-2"></div>
+          </div>
         </div>
-        <div class="form-group col-md-4">
-          <label for="plz">PLZ</label>
-          <input type="text" class="form-control" id="plz" name="plz">
-        </div>
-      </div>
+
 
       <div class="form-group">
         <label for="neues_passwort">Neues Passwort</label>
@@ -75,13 +105,14 @@
       <button type="submit" class="btn btn-success">Speichern</button>
     </form>
 
-    <div class="alert mt-3 d-none" id="feedback"></div>
-  </main>
 
-  <div id="footer"></div>
-  <script src="js/loadHeaderFooter.js"></script>
-  <script src="js/menuHandler.js"></script>
-  <script src="js/profil.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-</body>
+      <div class="alert mt-3 d-none" id="feedback"></div>
+    </main>
+
+    <div id="footer"></div>
+    <script src="js/loadHeaderFooter.js"></script>
+    <script src="js/menuHandler.js"></script>
+    <script src="js/profil.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>

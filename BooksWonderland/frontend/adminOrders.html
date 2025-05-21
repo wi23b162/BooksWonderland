@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Bestellungen verwalten – Books Wonderland</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <div id="nav"></div>
+
+  <main class="container mt-5">
+    <h1>Bestellungen einsehen</h1>
+
+    <table class="table table-bordered table-striped" id="admin-orders-table">
+      <thead>
+        <tr>
+          <th>Bestell-ID</th>
+          <th>Benutzer</th>
+          <th>Datum</th>
+          <th>Gesamtbetrag</th>
+          <th>Status</th>
+          <th>Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- per JS eingefügt -->
+      </tbody>
+    </table>
+  </main>
+
+  <!-- Optional: Modal für Bestell-Details -->
+  <div class="modal fade" id="orderDetailModal" tabindex="-1" role="dialog" aria-labelledby="orderDetailModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="orderDetailModalLabel">Bestelldetails</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Schließen">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="order-details-body">
+          <!-- Inhalt wird per JS geladen -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="footer"></div>
+
+  <script src="js/menuHandler.js"></script>
+  <script src="js/adminOrders.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -50,4 +50,41 @@ $(document).ready(function () {
       }
     });
   });
+
+  $('#password-change-form').on('submit', function (e) {
+  e.preventDefault();
+
+  const oldPassword = $('#old-password').val().trim();
+  const newPassword = $('#new-password').val().trim();
+  const confirmPassword = $('#confirm-password').val().trim();
+  const msg = $('#password-msg').removeClass('text-danger text-success').text('');
+
+  if (newPassword !== confirmPassword) {
+    msg.text('❌ Neue Passwörter stimmen nicht überein.').addClass('text-danger');
+    return;
+  }
+
+  $.ajax({
+    url: '../backend/logic/changePassword.php',
+    method: 'POST',
+    contentType: 'application/json',
+    dataType: 'json',
+    data: JSON.stringify({
+      oldPassword,
+      newPassword
+    }),
+    success: function (res) {
+      if (res.success) {
+        msg.text('✅ Passwort erfolgreich geändert.').addClass('text-success');
+        $('#password-change-form')[0].reset();
+      } else {
+        msg.text('❌ ' + res.message).addClass('text-danger');
+      }
+    },
+    error: function () {
+      msg.text('❌ Fehler bei der Verbindung zum Server.').addClass('text-danger');
+    }
+  });
+});
+
 });

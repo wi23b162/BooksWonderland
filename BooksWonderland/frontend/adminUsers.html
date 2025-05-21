@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Benutzerverwaltung – Books Wonderland</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <div id="nav"></div>
+
+  <main class="container mt-5">
+    <h1>Benutzerverwaltung</h1>
+
+    <table class="table table-bordered table-striped" id="admin-user-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>E-Mail</th>
+          <th>Rolle</th>
+          <th>Status</th>
+          <th>Bearbeiten</th>
+          <th>Aktivieren/Deaktivieren</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- per JS gefüllt -->
+      </tbody>
+    </table>
+  </main>
+
+  <!-- Modal zum Bearbeiten -->
+  <div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="editUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editUserModalLabel">Benutzer bearbeiten</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Schließen">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="edit-user-form">
+            <input type="hidden" id="edit-user-id">
+            <div class="form-group">
+              <label for="edit-vorname">Vorname</label>
+              <input type="text" class="form-control" id="edit-vorname" required>
+            </div>
+            <div class="form-group">
+              <label for="edit-nachname">Nachname</label>
+              <input type="text" class="form-control" id="edit-nachname" required>
+            </div>
+            <div class="form-group">
+              <label for="edit-email">E-Mail</label>
+              <input type="email" class="form-control" id="edit-email" required>
+            </div>
+            <div class="form-group">
+              <label for="edit-is-admin">Rolle</label>
+              <select class="form-control" id="edit-is-admin">
+                <option value="0">Benutzer</option>
+                <option value="1">Admin</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Änderungen speichern</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="footer"></div>
+
+  <script src="js/menuHandler.js"></script>
+  <script src="js/adminUsers.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

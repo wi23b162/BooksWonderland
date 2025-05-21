@@ -2,7 +2,7 @@ $(document).ready(function () {
   console.log("✅ menuHandler geladen");
 
   $.get('../backend/logic/sessionStatus.php', function (user) {
-    console.log("👤 sessionStatus Antwort:", user);
+    console.log("sessionStatus Antwort:", user);
 
     let html = `
       <nav class="navbar navbar-expand-lg sticky-top" style="background-color: #007E87;">
@@ -10,9 +10,9 @@ $(document).ready(function () {
           <a class="navbar-brand" href="index.html">
             <img src="images/logo.png" alt="Books Wonderland Logo" style="height: 50px;">
           </a>
-
+feature/addi-Sprint-4-Admin
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
 
@@ -26,22 +26,39 @@ $(document).ready(function () {
     if (user.loggedIn) {
       html += `
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle text-white font-weight-bold" href="#" id="userDropdown"
-            role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    feature/addi-Sprint-4-Admin
+          <a class="nav-link dropdown-toggle text-white font-weight-bold" href="#" id="userDropdown" role="button"
+             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Hallo, ${user.name}
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-            <a class="dropdown-item" href="invoicelist.html">📄 Letzte Rechnung</a>
-            <a class="dropdown-item" href="show_payment.html">💳 Zahlungsmethode</a>
-            <a class="dropdown-item" href="profil.html">⚙️ Kontodaten verwalten</a>
+            <a class="dropdown-item" href="invoicelist.html">Letzte Rechnung</a>
+            <a class="dropdown-item" href="show_payment.html">Zahlungsmethode</a>
+            <a class="dropdown-item" href="profil.html">Kontodaten verwalten</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item text-danger" href="#" id="logout-link">🚪 Logout</a>
+            <a class="dropdown-item text-danger" href="#" id="logout-link">Logout</a>
+
           </div>
         </li>
       `;
 
       if (user.isAdmin) {
-        html += `<li class="nav-item"><a class="nav-link text-white font-weight-bold" href="admin.html">Adminbereich</a></li>`;
+
+        html += `
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-white font-weight-bold" href="#" id="adminDropdown" role="button"
+               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Adminbereich
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="adminDropdown">
+              <a class="dropdown-item" href="adminProducts.html#produkte">Produkte</a>
+              <a class="dropdown-item" href="adminUsers.html#benutzer">Benutzer</a>
+              <a class="dropdown-item" href="adminOrders.html#bestellungen">Bestellungen</a>
+              <a class="dropdown-item" href="adminCoupons.html#gutscheine">Gutscheine</a>
+            </div>
+          </li>
+        `;
+
       }
     } else {
       html += `
@@ -62,14 +79,8 @@ $(document).ready(function () {
     // Logout-Handler
     $('#logout-link').on('click', function (e) {
       e.preventDefault();
-
-      console.log("🚪 Logout-Link geklickt");
-      console.log("🧹 Warenkorb vorher:", localStorage.getItem('cart'));
       localStorage.removeItem('cart');
-      console.log("🧹 Warenkorb nachher:", localStorage.getItem('cart'));
-
       $.get('../backend/logic/logout.php', function (response) {
-        console.log("📤 Antwort von logout.php:", response);
         if (response.success) {
           alert(response.message);
           window.location.href = 'login.html';
