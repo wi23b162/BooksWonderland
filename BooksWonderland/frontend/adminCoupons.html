@@ -1,58 +1,39 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <title>Gutscheine verwalten – Books Wonderland</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <meta charset="UTF-8">
+  <title>Gutscheine verwalten</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
   <div id="nav"></div>
-
   <main class="container mt-5">
     <h1>Gutscheine verwalten</h1>
-
     <form id="add-voucher-form" class="mb-4">
-      <div class="form-row">
-        <div class="form-group col-md-4">
-          <label for="voucher-code">Gutscheincode</label>
-          <input type="text" class="form-control" id="voucher-code" required />
-        </div>
-        <div class="form-group col-md-3">
-          <label for="voucher-percent">Rabatt (%)</label>
-          <input type="number" class="form-control" id="voucher-percent" min="1" max="100" required />
-        </div>
-        <div class="form-group col-md-4">
-          <label for="voucher-valid-until">Gültig bis</label>
-          <input type="date" class="form-control" id="voucher-valid-until" required />
-        </div>
-        <div class="form-group col-md-1 d-flex align-items-end">
-          <button type="submit" class="btn btn-success">+</button>
-        </div>
-      </div>
+      <input type="text" id="voucher-code" placeholder="Code" class="form-control mb-2" required />
+      <input type="number" id="voucher-amount" placeholder="Rabattwert" class="form-control mb-2" required />
+      <select id="voucher-type" class="form-control mb-2">
+        <option value="percent">%</option>
+        <option value="fixed">€</option>
+      </select>
+      <input type="date" id="voucher-valid-until" class="form-control mb-2" required />
+      <button type="submit" class="btn btn-success">Gutschein speichern</button>
     </form>
-
-    <table class="table table-bordered table-striped" id="voucher-table">
+    <table class="table" id="voucher-table">
       <thead>
-        <tr>
-          <th>Code</th>
-          <th>Rabatt</th>
-          <th>Gültig bis</th>
-          <th>Aktionen</th>
-        </tr>
+        <tr><th>Code</th><th>Wert</th><th>Gültig bis</th><th>Aktionen</th></tr>
       </thead>
-      <tbody>
-        <!-- per JS geladen -->
-      </tbody>
+      <tbody></tbody>
     </table>
   </main>
 
-  <div id="footer"></div>
-
   <script src="js/menuHandler.js"></script>
-  <script src="js/adminCoupons.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+  <div id="footer"></div>
+  <script src="js/loadHeaderFooter.js"></script>
+  <script src="js/adminCoupon.js"></script>
+
 </body>
 </html>

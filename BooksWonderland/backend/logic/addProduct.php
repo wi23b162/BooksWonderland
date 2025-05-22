@@ -15,26 +15,51 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['is_admin'] != 1) {
   exit;
 }
 
-$data = json_decode(file_get_contents('php://input'), true);
-$productId = $data['id'] ?? null;
+$title = $_POST['title'] ?? '';
+$author = $_POST['author'] ?? '';
+$description = $_POST['description'] ?? '';
+$price = $_POST['price'] ?? '';
+$rating = $_POST['rating'] ?? 0;
+$id = $_POST['id'] ?? null;
 
-if (!$productId || empty($data['title']) || empty($data['author']) || empty($data['description']) || empty($data['price']) || empty($data['image']) || !isset($data['rating'])) {
-  echo json_encode(['success' => false, 'message' => 'Unvollständige Daten übergeben.']);
+if (!$title || !$author || !$description || !$price) {
+  echo json_encode(['success' => false, 'message' => 'Unvollständige Felder']);
+  exit;
+}
+
+// 🖼️ Bild verarbeiten
+$imagePath = null;
+$uploadDir = '../../frontend/images/products/';
+if (!file_exists($uploadDir)) {
+  mkdir($uploadDir, 0777, true);
+}
+
+if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+  $fileTmp = $_FILES['image']['tmp_name'];
+  $fileName = uniqid() . '_' . basename($_FILES['image']['name']);
+  $targetPath = $uploadDir . $fileName;
+
+  if (move_uploaded_file($fileTmp, $targetPath)) {
+    $imagePath = 'images/products/' . $fileName;
+  } else {
+    echo json_encode(['success' => false, 'message' => 'Bild-Upload fehlgeschlagen.']);
+    exit;
+  }
+} else {
+  echo json_encode(['success' => false, 'message' => 'Kein Bild übergeben.']);
   exit;
 }
 
 try {
-  $stmt = $pdo->prepare("UPDATE products SET title = ?, author = ?, description = ?, price = ?, image = ?, rating = ? WHERE id = ?");
-  $stmt->execute([
-    $data['title'],
-    $data['author'],
-    $data['description'],
-    $data['price'],
-    $data['image'],
-    $data['rating'],
-    $productId
-  ]);
+  if ($id) {
+    $stmt = $pdo->prepare("UPDATE products SET title = ?, author = ?, description = ?, price = ?, image = ?, rating = ? WHERE id = ?");
+    $stmt->execute([$title, $author, $description, $price, $imagePath, $rating, $id]);
+  } else {
+    $stmt = $pdo->prepare("INSERT INTO products (title, author, description, price, image, rating) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt->execute([$title, $author, $description, $price, $imagePath, $rating]);
+  }
+
   echo json_encode(['success' => true]);
 } catch (PDOException $e) {
-  echo json_encode(['success' => false, 'message' => 'Fehler beim Aktualisieren: ' . $e->getMessage()]);
+  echo json_encode(['success' => false, 'message' => 'Fehler beim Speichern: ' . $e->getMessage()]);
 }
